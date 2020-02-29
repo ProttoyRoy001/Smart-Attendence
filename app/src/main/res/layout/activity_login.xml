@@ -17,6 +17,7 @@
         android:layout_marginBottom="20dp"
         android:drawableLeft="@drawable/ic_action_name"
         android:hint="Username"
+
         android:textColorHint="#ffffff"
         android:textColor="#FFFFFF"
         android:id="@+id/usernameId"
