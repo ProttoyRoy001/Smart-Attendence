@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/startbackground"
     android:gravity="center"
     android:layout_height="match_parent"
     tools:context=".Start">
 
-    <TextView
-        android:text="welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
+    <Button
+        android:id="@+id/startId"
+        android:layout_width="122dp"
+        android:layout_height="64dp"
+        android:background="#8D3F51B5"
+        android:lineSpacingExtra="10sp"
+        android:text="Start"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 </LinearLayout>
