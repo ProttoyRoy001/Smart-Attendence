@@ -36,7 +36,7 @@
         android:layout_height="65dp"
         android:layout_margin="20dp"
         android:background="#8F2B0404"
-        android:text="Attendence"
+        android:text="Attendance"
         android:textColor="#FFFFFF"
         android:textSize="20dp" />
 
