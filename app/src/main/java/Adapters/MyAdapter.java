@@ -1,11 +1,14 @@
 package Adapters;
 
 import android.content.Context;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartattendence.R;
@@ -35,6 +38,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
     @Override
     public void onBindViewHolder(@NonNull MyAdapterViewHolder holder, int position) {
 
+        ListItem listItem  = listItemsArrayList.get(position);
+        holder.textViewtype.setText(listItem.getType());
+        holder.textViewCode.setText(listItem.getCode());
+        Linkify.addLinks(holder.textViewCode,Linkify.ALL);
     }
 
     @Override
@@ -44,8 +51,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
 
     public class MyAdapterViewHolder extends RecyclerView.ViewHolder
     {
+        TextView textViewCode,textViewtype;
+        CardView cardView;
         public MyAdapterViewHolder(@NonNull View itemView) {
+
             super(itemView);
+            textViewCode=(TextView)itemView.findViewById(R.id.textViewCode);
+            textViewtype=(TextView)itemView.findViewById(R.id.textViewType);
+            cardView = (CardView)itemView.findViewById(R.id.cardView);
+
+
         }
 
     }
