@@ -1,17 +1,20 @@
 package com.example.smartattendence;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
@@ -51,7 +54,7 @@ public class QRcode extends AppCompatActivity {
         }
          //on swipe left or right to removie the data
 
-        new ItemTouchHelper(new ItemTouchHelper.Callback() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
                 return 0;
@@ -92,5 +95,33 @@ public class QRcode extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result!=null)
+        {
+            if(result.getContents() == null)
+            {
+                Toast.makeText(getApplicationContext(),"No Result Found",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                 boolean isInserted = helper.insertData(result.getFormatName(),result.getContents());
+                 if (isInserted)
+                 {
+                     arrayList.clear();
+                     arrayList = helper.getAllInformation();
+                     myAdapter = new MyAdapter(arrayList,this);
+                     recyclerView.setAdapter(myAdapter);
+                     myAdapter.notifyDataSetChanged();
+                 }
+            }
+        }
+        else
+        {
+            super.onActivityResult(requestCode,resultCode,data);
+        }
     }
 }

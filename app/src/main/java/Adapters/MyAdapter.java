@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
     {
         TextView textViewCode,textViewtype;
         CardView cardView;
-        public MyAdapterViewHolder(@NonNull View itemView) {
+        public MyAdapterViewHolder(@NonNull final View itemView) {
 
             super(itemView);
             textViewCode=(TextView)itemView.findViewById(R.id.textViewCode);
@@ -62,6 +63,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
             cardView = (CardView)itemView.findViewById(R.id.cardView);
 
 
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String type = listItemsArrayList.get(getAdapterPosition()).getType();
+                    Intent i = new Intent();
+                    i.setAction(Intent.ACTION_SEND);
+                    i.putExtra(Intent.EXTRA_TEXT,type);
+                    i.setType("text/plain");
+                    itemView.getContext().startActivity(i);
+                }
+            });
         }
 
     }
