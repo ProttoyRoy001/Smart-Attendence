@@ -19,6 +19,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="74dp"
+        android:id="@+id/fab"
         android:layout_height="77dp"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
