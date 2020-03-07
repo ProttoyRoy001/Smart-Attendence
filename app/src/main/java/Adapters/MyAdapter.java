@@ -42,6 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
         holder.textViewtype.setText(listItem.getType());
         holder.textViewCode.setText(listItem.getCode());
         Linkify.addLinks(holder.textViewCode,Linkify.ALL);
+
     }
 
     @Override
